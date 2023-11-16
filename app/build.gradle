@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'ar.edu.davinci.testingapi'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "ar.edu.davinci.testingapi"

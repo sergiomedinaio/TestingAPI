@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TestingAPI</string>
+    <string name="noConnectionMessageText">Falló la conexión. Intente más tarde</string>
+    <string name="noConnectionButtonText">Reintentar</string>
 </resources>
