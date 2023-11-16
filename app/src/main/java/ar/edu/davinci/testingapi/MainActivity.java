@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if(networkInfo != null && networkInfo.isConnected()) {
             //Async Task
+            GetRicks getRicks = new GetRicks();
+            getRicks.execute("https://rickandmortyapi.com/api/character");
             noInternetMessage.setVisibility(View.INVISIBLE);
         } else {
             noInternetMessage.setVisibility(View.VISIBLE);
