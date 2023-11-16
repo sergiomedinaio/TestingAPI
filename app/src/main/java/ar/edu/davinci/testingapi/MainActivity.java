@@ -10,6 +10,10 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    public void checkConnectionOnClick(View view) {
+        checkConnection();
+    }
+
     public void checkConnection(){
         LinearLayout noInternetMessage = findViewById(R.id.noInternetMessage);
         ConnectivityManager connectivityManager =
