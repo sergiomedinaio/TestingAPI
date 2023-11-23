@@ -60,4 +60,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    public void logout (View v) {
+        mAuth.signOut();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        Log.i("firebase", "yendo a login");
+    }
+
 }
