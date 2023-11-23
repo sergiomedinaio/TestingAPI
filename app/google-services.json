@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1075144789159",
+    "project_id": "rickandmortyviewer-7c00e",
+    "storage_bucket": "rickandmortyviewer-7c00e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075144789159:android:7d7b0dc47ddd0325bc1f82",
+        "android_client_info": {
+          "package_name": "ar.edu.davinci.testingapi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaPNGypKXWufoGN8YLajdzvRTby0_HtpA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
