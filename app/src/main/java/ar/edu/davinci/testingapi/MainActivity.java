@@ -2,6 +2,7 @@ package ar.edu.davinci.testingapi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
             Log.i("firebase", "hay usuario");
 
         } else {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
             Log.i("firebase", "deberia logearme porque no hay usuario");
         }
     }
