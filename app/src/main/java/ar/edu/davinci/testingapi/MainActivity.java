@@ -60,24 +60,31 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             String uid = currentUser.getUid();
-            db
-                .collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()) {
-                            for(QueryDocumentSnapshot documento: task.getResult()) {
-                                String id = documento.getId();
-                                Object data = documento.getData();
-                                Log.i("firebase firestore", "id: " + id + " data: " + data.toString());
-                            }
-                        }
-                    }
-                });
 
             if(currentUser.isEmailVerified()) {
                 Log.i("firebase", "hay usuario");
+                db
+                        .collection("users")
+                        .whereEqualTo("uid", uid)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful()) {
+                                    for(QueryDocumentSnapshot documento: task.getResult()) {
+                                        String id = documento.getId();
+                                        Object data = documento.getData();
+
+                                        db
+                                                .collection("users")
+                                                .document(id)
+                                                .update("verificado", true);
+
+                                        Log.i("firebase firestore", "id: " + id + " data: " + data.toString());
+                                    }
+                                }
+                            }
+                        });
             } else {
                 currentUser.sendEmailVerification();
             }
