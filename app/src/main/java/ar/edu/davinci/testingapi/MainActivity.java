@@ -2,6 +2,7 @@ package ar.edu.davinci.testingapi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
+    private User user;
 
     public void checkConnectionOnClick(View view) {
         checkConnection();
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("firebase", "hay usuario");
                 db
                         .collection("users")
-                        .whereEqualTo("uid", uid)
+                        //.whereEqualTo("uid", uid)
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
@@ -74,13 +78,26 @@ public class MainActivity extends AppCompatActivity {
                                     for(QueryDocumentSnapshot documento: task.getResult()) {
                                         String id = documento.getId();
                                         Object data = documento.getData();
+                                        user = documento.toObject(User.class);
+
 
                                         db
                                                 .collection("users")
                                                 .document(id)
                                                 .update("verificado", true);
 
-                                        Log.i("firebase firestore", "id: " + id + " data: " + data.toString());
+
+                                        Log.i("firebase firestore", "apellido " + user.getApellido());
+                                        Log.i("firebase firestore", "nombre " + user.getNombre());
+                                        Log.i("firebase firestore", "verificado " + user.isVerificado());
+
+                                        ConstraintLayout app = findViewById(R.id.app);
+                                        TextView miNombre = new TextView(getApplicationContext());
+                                        miNombre.setText(user.getApellido() + " " + user.getNombre());
+                                        app.addView(miNombre);
+
+
+                                        //Log.i("firebase firestore", "id: " + id + " data: " + data.toString());
                                     }
                                 }
                             }
